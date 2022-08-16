@@ -1,0 +1,73 @@
+{% extends 'empDetail/base.html' %}
+{% load static %}
+
+{% block title %} <title>Employee Detail</title> {% endblock title %}
+
+{% block mainblock1 %}
+ <a href="{% url 'empLists' %}" class="btn btn-secondary mx-3 my-3">Back</a>
+<div class="container my-5 text-center">
+
+    {% comment %} {% if emp %}
+    <div class="row">
+        <div class="col-md-12">
+           <table class="table table-hover text-center">
+                <thead>
+                  <tr>
+                    <th >ID</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Department</th>
+                    <th>Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>{{emp.id}}</th>
+                        <td>{{emp.name}}</td>
+                        <td>{{emp.username}}</td>
+                        <td>{{emp.email}}</td>
+                        <td>{{emp.phone}}</td>
+                        <td>{{emp.department}}</td>
+                        <td>{{emp.role}}</td>
+                      </tr>    
+                </tbody>
+              </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-dark" role="alert">
+        Data Not Found !!!
+      </div>
+    {% endif %} {% endcomment %}
+    
+
+
+</div> 
+
+{% endblock mainblock1 %}
+
+{% block mainblock2 %}
+<div class="jumbotron text-center my-4">
+  <h1 class="display-6">Name : {{emp.name}}</h1>
+  <h5>ID : {{emp.id}}</h5>
+  <h5>Username : {{emp.username}}</h5>
+  <h5>Email : {{emp.email}}</h5>
+  <h5>Phone : {{emp.phone}}</h5>
+  <h5>Department : {{emp.department}}</h5>
+  <h5>Role : {{emp.role}}</h5>
+  {% comment %} <hr class="my-4 text-center" width="30%"> {% endcomment %}
+
+  <div class="container my-5">
+    <form action="{% url 'update' emp.id %}" method="GET" class="my-3 d-inline">
+      {% comment %} {% csrf_token %} {% endcomment %}
+      <input type="submit" value="Update" class="btn btn-warning">
+  </form>
+  <form action="{% url 'delete' emp.id %}" method="POST" class="my-3 d-inline">
+      {% csrf_token %}
+      <input type="submit" value="Delete" class="btn btn-danger">
+  </form>
+  </div>
+   </div>
+{% endblock mainblock2 %}

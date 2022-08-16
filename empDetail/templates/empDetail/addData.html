@@ -1,0 +1,31 @@
+{% extends 'empDetail/base.html' %}
+{% load static %}
+{% block title %}<title>Add Employee Data</title>{% endblock title %}
+
+{% block mainblock1 %}
+
+<div class="row">
+    <div class="col-sm-4 offset-4">
+        <h3 class="h3 text-center mt-3">Add Employee Details</h3>
+        <div class="jumbotron my-3">
+    
+            <form action="" method="POST" novalidate>
+                {% csrf_token %}
+                {{empForm.as_p}}
+                {% comment %} {% if empForm.errors %}
+                {% for field in empForm %}
+                {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+                {% endfor %}
+                {% endfor %}
+                {% endif %} {% endcomment %}
+                <input type="submit" class="btn btn-primary" value="ADD">
+                <a href="{% url 'index' %}" class="btn btn-dark">Back</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock mainblock1 %}

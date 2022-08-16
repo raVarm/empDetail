@@ -1,0 +1,55 @@
+{% extends 'empDetail/base.html' %}
+{% load static %}
+
+{% block title %} <title>Index</title> {% endblock title %}
+
+{% block mainblock1 %}
+<div class="container my-5 text-center">
+
+    {% if emp %}
+    <div class="row">
+        <div class="col-sm-12 table-responsive ">
+           <table class="table table-hover text-center">
+                <thead>
+                  <tr>
+                    <th >ID</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Department</th>
+                    <th>Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+    
+                    {% for x in emp %}
+                    <tr>
+                        <th>{{forloop.counter}}</th>
+                        <td>{{x.name}}</td>
+                        <td>{{x.username}}</td>
+                        <td>{{x.email}}</td>
+                        <td>{{x.phone}}</td>
+                        <td>{{x.department}}</td>
+                        <td>{{x.role}}</td>
+                      </tr>
+                    {% endfor %}
+    
+                </tbody>
+              </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-dark" role="alert">
+        Data Not Found !!!
+      </div>
+    {% endif %}
+
+    <div class="conttiner mt-3">
+      <a href="{% url 'empLists' %}" class="btn btn-primary">Show All Data</a>
+      <a href="{% url 'addData' %}" class="btn btn-warning">Add Data</a>
+    </div>
+
+</div>
+
+{% endblock mainblock1 %}
